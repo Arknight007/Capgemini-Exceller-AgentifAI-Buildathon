@@ -27,8 +27,9 @@ An agentic, multi-LLM **story production pipeline** built on n8n. A single reque
 
 > The pipeline's actual end-to-end result — three ranked scenes, a continuity audit with a Narrative Coherence Score, and an updated story bible — rendered to PDF *inside* n8n and returned over the webhook.
 
-![NarrativeAI sample PDF output](output.gif)
-
+<p align="center">
+  <img src="new.gif" alt="SS cg" width="90%" />
+</p>
 ---
 
 ## Architecture
