@@ -1,0 +1,10 @@
+{
+  "action": "generate_scene",
+  "content": "A detective discovers their partner has been lying about the case for weeks.",
+  "genre": "noir thriller",
+  "tone": "tense",
+  "pacing": "fast",
+  "constraints": "keep it under one location",
+  "storyBibleContext": "Detective Mara Vance, 38, sharp and distrustful. Partner Eli Cross, 45, charming, hides a gambling debt. Set in 1950s Chicago.",
+  "sessionId": "demo-session-001"
+}
