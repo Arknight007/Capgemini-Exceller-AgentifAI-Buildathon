@@ -1,18 +1,22 @@
 # NarrativeAI — Story Co-Writer Agent
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Capgemini-AgentifAI%20Buildathon-0070AD?style=for-the-badge" alt="Capgemini AgentifAI Buildathon" />
-  <img src="https://img.shields.io/badge/Round%202-Deep%20Dive-512BD4?style=for-the-badge" alt="Round 2 Deep Dive" />
+  <img src="https://img.shields.io/badge/Capgemini-AgentifAI%20Buildathon-0070AD?style=for-the-badge&logoColor=white" />
+  <img src="https://img.shields.io/badge/Challenge-Round%202%20%7C%20Deep%20Dive-2B0A6E?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Category-Agentic%20AI-5C2D91?style=for-the-badge" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Built%20with-n8n-EA4B71?logo=n8n&logoColor=white" alt="n8n" />
-  <img src="https://img.shields.io/badge/LLM-gpt--4.1--mini-412991?logo=openai&logoColor=white" alt="OpenAI gpt-4.1-mini" />
-  <img src="https://img.shields.io/badge/Agents-3%20in%20sequence-7b2d8e" alt="3 Agents" />
-  <img src="https://img.shields.io/badge/PDF%20engine-Pure%20JavaScript-F7DF1E?logo=javascript&logoColor=black" alt="Pure JavaScript PDF" />
-  <img src="https://img.shields.io/badge/dependencies-zero-success" alt="Zero dependencies" />
-  <img src="https://img.shields.io/badge/status-working-brightgreen" alt="Status working" />
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License MIT" />
+  <img src="https://img.shields.io/badge/n8n-Orchestration-EA4B71?style=for-the-badge&logo=n8n&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenAI-GPT--4.1--mini-412991?style=for-the-badge&logo=openai&logoColor=white" />
+  <img src="https://img.shields.io/badge/Multi--Agent-3%20Stage%20Pipeline-00A3E0?style=for-the-badge" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Document%20Generation-PDF%20Automation-0070AD?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Architecture-Zero%20Dependencies-00A651?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Deployment-Ready-00A651?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-MIT-5C2D91?style=for-the-badge" />
 </p>
 
 An agentic, multi-LLM **story production pipeline** built on n8n. A single request runs three specialised AI agents in sequence — **Scene Planning → Continuity Validation → Story-Bible canonisation** — and returns a finished, formatted **PDF report** generated entirely inside the workflow. No external PDF service. No API keys beyond the LLM. Zero npm dependencies.
@@ -23,7 +27,7 @@ An agentic, multi-LLM **story production pipeline** built on n8n. A single reque
 
 > The pipeline's actual end-to-end result — three ranked scenes, a continuity audit with a Narrative Coherence Score, and an updated story bible — rendered to PDF *inside* n8n and returned over the webhook.
 
-![NarrativeAI sample PDF output](docs/sample-output.png)
+![NarrativeAI sample PDF output](output.gif)
 
 ---
 
