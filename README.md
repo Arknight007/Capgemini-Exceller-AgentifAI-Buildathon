@@ -97,19 +97,41 @@ sequenceDiagram
 | **Continuity Guard** | Narrative QA | Per-scene PASS / WARN / FAIL across character, timeline, location, relationships and constraints, plus an overall **Narrative Coherence Score (NCS)** and APPROVE / REVISE / REJECT |
 | **Story Bible Agent** | Canon keeper | Complete updated Story Bible — characters, world state, event history, lore, locked elements, change log |
 
-## Why a custom PDF generator
+## Why a Custom PDF Engine?
 
-n8n Cloud's Code node cannot import npm packages (pdfkit, jspdf, etc.). [`src/generate-pdf.js`](src/generate-pdf.js) therefore implements a **self-contained PDF writer in pure JavaScript**: it hand-builds the PDF object graph (catalog, pages, Helvetica / Helvetica-Bold fonts, content streams, xref table) with automatic text wrapping, pagination, and lightweight Markdown styling. No dependencies, no API keys, runs anywhere n8n runs.
+Instead of relying on external PDF libraries, NarrativeAI uses a **fully self-contained PDF generation engine written in pure JavaScript**. This design choice was driven by the execution constraints of **n8n Cloud**, where Code nodes cannot install or import npm packages such as PDFKit or jsPDF.
 
-## Run it
+The custom engine located in `src/generate-pdf.js` directly constructs the PDF document structure—including catalogs, pages, fonts, content streams, cross-reference tables, and metadata—without any third-party dependencies. It also provides:
 
-### Option A — In the n8n editor
-1. Import [`workflow/narrativeai-workflow.json`](workflow/narrativeai-workflow.json).
-2. Attach an OpenAI credential to the three LLM nodes (the bundled n8n AI credits allow `gpt-4.1-mini`).
-3. Click **Execute Workflow** — the `Run Test` trigger feeds the sample noir-thriller case through the whole pipeline.
-4. Open the **Generate PDF** (or **Respond**) node and download the produced PDF.
+- Automatic text wrapping and pagination
+- Markdown-aware formatting
+- Dynamic chapter and section rendering
+- Consistent typography and document layout
+- Lightweight, portable execution across all n8n environments
 
-### Option B — Live webhook
+The result is a **dependency-free, cloud-native PDF generation pipeline** that requires no additional services, API keys, or runtime installations while producing professional, production-ready reports.
+
+---
+
+## Running the Workflow
+
+### Option A — Execute from the n8n Editor
+
+1. Import `workflow/narrativeai-workflow.json` into your n8n workspace.
+2. Configure OpenAI credentials for the three LLM nodes.
+3. Execute the workflow using the built-in **Run Test** trigger.
+4. The sample narrative is processed through the complete multi-agent pipeline:
+   - Story Analysis Agent
+   - Narrative Enhancement Agent
+   - Production Report Agent
+5. Open the **Generate PDF** or **Respond** node to download the generated report.
+
+---
+
+### Option B — Invoke via Webhook
+
+Trigger the entire workflow programmatically using the exposed webhook endpoint:
+
 ```bash
 curl -X POST https://<your-n8n-host>/webhook/narrative-ai \
   -H "Content-Type: application/json" \
@@ -117,6 +139,96 @@ curl -X POST https://<your-n8n-host>/webhook/narrative-ai \
   --output NarrativeAI_Story_Production_Report.pdf
 ```
 
+The workflow automatically:
+
+1. Receives the story payload.
+2. Executes the multi-agent processing pipeline.
+3. Generates a structured production report.
+4. Returns a downloadable PDF document as the final output.
+
+---
+
+## Workflow Overview
+
+```text
+Input Story
+     │
+     ▼
+┌───────────────────────┐
+│ Story Analysis Agent  │
+└──────────┬────────────┘
+           │
+           ▼
+┌───────────────────────┐
+│ Narrative Enhancement │
+│        Agent          │
+└──────────┬────────────┘
+           │
+           ▼
+┌───────────────────────┐
+│ Production Report     │
+│        Agent          │
+└──────────┬────────────┘
+           │
+           ▼
+┌───────────────────────┐
+│ Custom PDF Generator  │
+└──────────┬────────────┘
+           │
+           ▼
+    Final PDF Report
+```
+
+---
+
+## Key Advantages
+
+| Feature | Benefit |
+|----------|----------|
+| Zero Dependencies | No external PDF libraries required |
+| Cloud-Native | Runs directly inside n8n Cloud |
+| Portable | Works across local, cloud, and self-hosted deployments |
+| Lightweight | Minimal runtime overhead |
+| Fully Automated | End-to-end story-to-report generation |
+| Production Ready | Generates stakeholder-friendly PDF reports |
+| Cost Efficient | No additional PDF generation service required |
+| Self-Contained | Entire workflow runs within a single automation pipeline |
+
+---
+
+## Technical Highlights
+
+- **Pure JavaScript PDF Engine**
+  - No PDFKit
+  - No jsPDF
+  - No external rendering services
+
+- **Agentic AI Workflow**
+  - Multi-agent sequential orchestration
+  - Context preservation between stages
+  - Structured output generation
+
+- **n8n Native Architecture**
+  - Built entirely using n8n workflows
+  - Compatible with n8n Cloud and self-hosted deployments
+  - Easy integration with external APIs and enterprise systems
+
+- **Scalable Design**
+  - Supports long-form narratives
+  - Handles multi-chapter story analysis
+  - Generates production-ready documentation
+
+---
+
+## Design Philosophy
+
+NarrativeAI was designed around three core principles:
+
+1. **Simplicity** — Minimize operational complexity by avoiding external dependencies.
+2. **Portability** — Ensure the workflow can run anywhere n8n runs.
+3. **Reliability** — Produce consistent, professional-quality reports without requiring additional infrastructure.
+
+By combining a multi-agent AI pipeline with a custom-built PDF generation engine, NarrativeAI delivers a complete **Story-to-Report Automation System** capable of transforming raw narrative content into structured, stakeholder-ready documentation with minimal operational overhead.
 ## Input fields
 
 | Field | Description |
